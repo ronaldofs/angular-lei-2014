@@ -19,11 +19,14 @@ var Beers = mongoose.model('Beer', BeerSchema);
 var app = express();
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
+  app.set('views', __dirname + '/views');
+  app.engine('html', require('ejs').renderFile);
   app.set('view engine', 'html');
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(express.cookieParser());
+  app.use(express.static(path.join(__dirname, 'app')));
   app.use(app.router);
 });
 
@@ -31,6 +34,10 @@ app.get('/api/beers', function(req, res) {
   Beers.find().exec().then(function(beers) {
     return res.send(beers);
   });
+});
+
+app.get('/*', function(req, res) {
+  res.render('index');
 });
 
 app.listen(app.get('port'), function() {
