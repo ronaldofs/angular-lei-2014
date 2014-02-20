@@ -1,0 +1,14 @@
+<h3>Compras</h3>
+<ul class="list-group">
+  <li class="list-group-item">
+    <strong>Total <span class="pull-right">{{ cart.total | price }}</strong></strong>
+  </li>
+  <li class="list-group-item" ng-repeat="item in cart.items">
+    <span class="label label-danger" ng-click="cart.removeItem(item)">&times;</span>
+    <span>{{ item.title }}</span>
+    <span class="badge">{{ item.amount }}</span>
+  </li>
+</ul>
+<div>
+  <button class="btn btn-danger" ng-click="cart.clear()">Limpar tudo</button>
+</div>

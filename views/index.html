@@ -1,12 +1,14 @@
 <!doctype html>
 <html>
   <head>
-    <script src="/lib/angular.js" type="text/javascript" charset="utf-8"></script>
-    <script src="/lib/angular-route.js" type="text/javascript" charset="utf-8"></script>
-    <script src="/app.js" type="text/javascript" charset="utf-8"></script>
-    <link rel="stylesheet" href="/css/bootstrap.css">
-    <link rel="stylesheet" href="/css/style.css">
+    <script src="lib/angular.js" type="text/javascript" charset="utf-8"></script>
+    <script src="lib/angular-route.js" type="text/javascript" charset="utf-8"></script>
+    <script src="app.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
   </head>
-  <body>
+  <body ng-app="App">
+    <div ng-include="'/templates/navbar.html'"></div>
+    <div ng-view class="container"></div>
   </body>
 </html>
