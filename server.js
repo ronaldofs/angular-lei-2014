@@ -26,7 +26,7 @@ app.configure(function(){
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(express.cookieParser());
-  app.use(express.static(path.join(__dirname, 'app')));
+  app.use("/", express.static(path.join(__dirname, 'app')));
   app.use(app.router);
 });
 
@@ -36,7 +36,13 @@ app.get('/api/beers', function(req, res) {
   });
 });
 
-app.get('/*', function(req, res) {
+app.get('/api/beers/:id', function(req, res) {
+  Beers.findById(req.params.id).exec().then(function(beer) {
+    return res.send(beer);
+  });
+});
+
+app.get('*', function(req, res) {
   res.render('index');
 });
 
