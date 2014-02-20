@@ -1,6 +1,6 @@
 var App = angular.module('App', ['ngRoute']);
 
-App.config(function($routeProvider) {
+App.config(function($routeProvider, $locationProvider) {
   $routeProvider
     .when('/', {
       templateUrl: '/templates/home.html'
@@ -9,6 +9,8 @@ App.config(function($routeProvider) {
       templateUrl: '/templates/beer.html',
       controller: 'BeerCtrl'
     });
+
+  $locationProvider.html5Mode(true);
 });
 
 App.controller('StoreCtrl', function($scope, Beers, Cart) {

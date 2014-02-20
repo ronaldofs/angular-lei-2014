@@ -7,7 +7,7 @@
 <table class="table">
  <tr ng-repeat="beer in beers | filter: query | orderBy: sort">
    <td><img height="50" ng-src="{{ beer.image }}"></td>
-   <td><a href="#/beers/{{ beer._id }}">{{ beer.title }}</a></td>
+   <td><a href="beers/{{ beer._id }}">{{ beer.title }}</a></td>
    <td>{{ beer.brand }}</td>
    <td>{{ beer.price | price }}</td>
    <td><button class="btn btn-primary" ng-click="addToCart(beer)">Comprar</button></td>
