@@ -3,6 +3,7 @@
 var express = require('express'),
     path = require('path'),
     fs = require('fs'),
+    dummydata = require('./dummydata'),
     mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
@@ -15,6 +16,13 @@ var BeerSchema = new Schema({
   price: Number
 }, { collection: 'beers' });
 var Beers = mongoose.model('Beer', BeerSchema);
+
+// Setup default db data
+Beers.find({}).remove(function() {
+  Beers.create(dummydata, function() {
+    console.log("Finished populating default data")
+  });
+});
 
 var app = express();
 app.configure(function(){
